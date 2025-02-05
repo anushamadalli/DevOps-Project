@@ -29,13 +29,13 @@ pipeline {
         }
         stage('Assign tag'){
             steps{
-                sh 'docker tag app anushamadalli/app'
+                sh 'docker tag app anushamadalli/app1'
             }
         }
         stage('Push to dockerhub'){
             steps{
                 sh 'echo "@docker#123" | docker login -u "anushamadalli" --password-stdin'
-                sh 'docker push anushamadalli/app'
+                sh 'docker push anushamadalli/app1'
             }
         }
         stage('Remove images'){
@@ -45,12 +45,12 @@ pipeline {
         }
         stage('Pull image from DockerHub'){
             steps{
-                sh 'docker pull anushamadalli/app'
+                sh 'docker pull anushamadalli/app1'
             }
         }
         stage('Run a container'){
             steps{
-                sh 'docker run -it -d --name anusha -p 8081:8080 anushamadalli/app'
+                sh 'docker run -it -d --name anusha -p 8081:8080 anushamadalli/app1'
             }
         }
     }
